@@ -6,9 +6,13 @@ snake[0] = {
     x: 8 * box,
     y: 8 * box,
 };
-// ?????????????????????
+// vetor de objetos da cobrinha
 
 let direction = "right"; //variavel da direção da cobrinha
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box 
+}
 
 function criarBG() {
     context.fillStyle = "lightgreen"; //vai retornar uma cor
@@ -21,6 +25,11 @@ function criarCobrinha() {
         context.fillStyle = "green";
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
+}
+
+function drawFood(){
+    context.fillStyle = "red";
+    context.fillRect(food.x, food.y, box, box)
 }
 
 //Vai receber um evento e passar a função update como arg
@@ -42,6 +51,7 @@ function iniciarJogo() {
 
     criarBG(); // vai chamar a função do jogo
     criarCobrinha();
+    drawFood()
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
