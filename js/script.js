@@ -2,34 +2,37 @@ let canvas = document.getElementById("snake"); // html
 let context = canvas.getContext("2d"); //renderiza o desenho dentro do canvas
 let box = 32; // o tamanho de cada quadrado
 let snake = []; // array da cobrinha
+
 snake[0] = {
     x: 8 * box,
     y: 8 * box,
 };
 // vetor de objetos da cobrinha
 
-let direction = "right"; //variavel da direção da cobrinha
+let direction = "right"; //variavel da direção inicial da cobrinha
+
+//variavel com a geração da comida
 let food = {
     x: Math.floor(Math.random() * 15 + 1) * box,
-    y: Math.floor(Math.random() * 15 + 1) * box 
-}
+    y: Math.floor(Math.random() * 15 + 1) * box,
+};
 
 function criarBG() {
     context.fillStyle = "lightgreen"; //vai retornar uma cor
     context.fillRect(0, 0, 16 * box, 16 * box); //coloca e dar tamanho
 }
 
-//função que vai criar a cobrinha
+//função que vai criar a cobrinhat
 function criarCobrinha() {
     for (i = 0; i < snake.length; i++) {
         context.fillStyle = "green";
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
 }
-
-function drawFood(){
+//função que vai gerar a comida
+function drawFood() {
     context.fillStyle = "red";
-    context.fillRect(food.x, food.y, box, box)
+    context.fillRect(food.x, food.y, box, box);
 }
 
 //Vai receber um evento e passar a função update como arg
@@ -51,11 +54,13 @@ function iniciarJogo() {
 
     criarBG(); // vai chamar a função do jogo
     criarCobrinha();
-    drawFood()
+    drawFood();
 
+    //variaveis que vao receber as cordenadas da cabeça
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
+    //Ações ao receber o acionamento das teclas
     if (direction == "right") snakeX += box; // Orientado plano cartesiano
     if (direction == "left") snakeX -= box;
     if (direction == "up") snakeY -= box; // ???????
