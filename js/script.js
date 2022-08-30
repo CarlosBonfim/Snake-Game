@@ -2,6 +2,7 @@ let canvas = document.getElementById("snake"); // html
 let context = canvas.getContext("2d"); //renderiza o desenho dentro do canvas
 let box = 32; // o tamanho de cada quadrado
 let snake = []; // array da cobrinha
+let pontuacao = 0;
 
 snake[0] = {
     x: 8 * box,
@@ -67,6 +68,7 @@ function iniciarJogo() {
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
+
     //Ações ao receber o acionamento das teclas
     if (direction == "right") snakeX += box; // Orientado plano cartesiano
     if (direction == "left") snakeX -= box;
@@ -79,8 +81,10 @@ function iniciarJogo() {
     } else {
         food.x = Math.floor(Math.random() * 15 + 1) * box;
         food.y = Math.floor(Math.random() * 15 + 1) * box;
+        pontuacao++
+        console.log(pontuacao);
     }
-
+    document.getElementById("pont").innerHTML = pontuacao;
     //cabeça da cobrinha
     let newHead = {
         x: snakeX,
