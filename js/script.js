@@ -46,17 +46,30 @@ function update(event) {
     if (event.keyCode == 38 && direction != "down") direction = "up";
     if (event.keyCode == 39 && direction != "left") direction = "right";
 }
+
+function gameOver(){
+    clearInterval(jogo);
+    alert("Gamer Over: :(");
+}
+
 function iniciarJogo() {
+
     //Caso chegue aos limites da area de jogo
-    if (snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
-    if (snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
-    if (snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
-    if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
+    // if (snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
+    // if (snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
+    // if (snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
+    // if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
+
+    //Se a cobrinha bater na parede
+    if(snake[0].x > 15 * box) gameOver()
+    if(snake[0].x < 0 ) gameOver()
+    if(snake[0].y > 15 * box) gameOver()
+    if(snake[0].y < 0 ) gameOver()
+
 
     for (i = 1; i < snake.length; i++) {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
-            clearInterval(jogo);
-            alert("Gamer Over: :(");
+            gameOver();
         }
     }
 
@@ -95,3 +108,7 @@ function iniciarJogo() {
 }
 
 let jogo = setInterval(iniciarJogo, 100); //Intervalo de 100 milisegundos para inciar o jogo
+// function jogo(){
+//     setInterval(iniciarJogo, 100);
+// }
+// document.getElementyById("botao").innerHTML = jogo();

@@ -1,9 +1,26 @@
 body{
-    height: 95vh;
-    width: 95vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
+}
+.game{
+    height: 95vh;
+    width: 95vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.game > h1{
     color: rgb(20, 82, 20);
+}
+#botao{
+    margin: 10px;
+    padding-inline: 10px;
+    display: flex;
+    justify-content: center;
+
 }
