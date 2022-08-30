@@ -47,13 +47,13 @@ function update(event) {
     if (event.keyCode == 39 && direction != "left") direction = "right";
 }
 
-function gameOver(){
+function gameOver() {
     clearInterval(jogo);
     alert("Gamer Over: :(");
+    console.log("! Game over");
 }
 
 function iniciarJogo() {
-
     //Caso chegue aos limites da area de jogo
     // if (snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
     // if (snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
@@ -61,11 +61,10 @@ function iniciarJogo() {
     // if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
 
     //Se a cobrinha bater na parede
-    if(snake[0].x > 15 * box) gameOver()
-    if(snake[0].x < 0 ) gameOver()
-    if(snake[0].y > 15 * box) gameOver()
-    if(snake[0].y < 0 ) gameOver()
-
+    if (snake[0].x > 15 * box) gameOver();
+    if (snake[0].x < 0) gameOver();
+    if (snake[0].y > 15 * box) gameOver();
+    if (snake[0].y < 0) gameOver();
 
     for (i = 1; i < snake.length; i++) {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
@@ -81,7 +80,6 @@ function iniciarJogo() {
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
-
     //Ações ao receber o acionamento das teclas
     if (direction == "right") snakeX += box; // Orientado plano cartesiano
     if (direction == "left") snakeX -= box;
@@ -94,7 +92,7 @@ function iniciarJogo() {
     } else {
         food.x = Math.floor(Math.random() * 15 + 1) * box;
         food.y = Math.floor(Math.random() * 15 + 1) * box;
-        pontuacao++
+        pontuacao++;
         console.log(pontuacao);
     }
     document.getElementById("pont").innerHTML = pontuacao;
@@ -107,8 +105,14 @@ function iniciarJogo() {
     snake.unshift(newHead);
 }
 
-let jogo = setInterval(iniciarJogo, 100); //Intervalo de 100 milisegundos para inciar o jogo
-// function jogo(){
-//     setInterval(iniciarJogo, 100);
-// }
-// document.getElementyById("botao").innerHTML = jogo();
+// let jogo = setInterval(iniciarJogo, 100); //Intervalo de 100 milisegundos para inciar o jogo
+
+function jogo() {
+    clearInterval(jogo);
+    setInterval(iniciarJogo, 100);
+    console.log("acionou");
+}
+
+document.getElementById("botao").addEventListener("click", jogo);
+// document.getElementById("botao").innerHTML = apertou();
+// start()
