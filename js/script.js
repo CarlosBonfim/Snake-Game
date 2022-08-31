@@ -47,11 +47,13 @@ function update(event) {
     if (event.keyCode == 39 && direction != "left") direction = "right";
 }
 
-function gameOver() {
-    clearInterval(jogo);
-    alert("Gamer Over: :(");
-    console.log("! Game over");
-}
+// function gameOver() {
+//     clearInterval(jogo);
+//     alert("Gamer Over: :(");
+//     console.log("! Game over");
+// }
+
+
 
 function iniciarJogo() {
     //Caso chegue aos limites da area de jogo
@@ -105,14 +107,35 @@ function iniciarJogo() {
     snake.unshift(newHead);
 }
 
+
+
+// let jogo =  () => {
+//     setInterval(iniciarJogo, 100)
+//     console.log("Entrou na função jogo")
+    
+// }
+
+
 // let jogo = setInterval(iniciarJogo, 100); //Intervalo de 100 milisegundos para inciar o jogo
 
-function jogo() {
-    clearInterval(jogo);
-    setInterval(iniciarJogo, 100);
-    console.log("acionou");
+
+
+function game() {
+
+    let jogo = setInterval(iniciarJogo, 100);
+    console.log("iniciou");
+    document.getElementById("botao").innerHTML = "Reiniciar";
+    document.getElementById("botao").addEventListener("click", gameOver);
+
 }
 
-document.getElementById("botao").addEventListener("click", jogo);
+let gameOver = (game) => {
+    clearInterval(jogo)
+    alert("Fim de jogo")
+    console.log("! Entrou na fund game over 2")
+}
+
+document.getElementById("botao").addEventListener("click", game);
 // document.getElementById("botao").innerHTML = apertou();
 // start()
+
